@@ -2,6 +2,7 @@ import { Router } from "express";
 //import multer from "multer";
 
 import * as pingController from "./controllers/ping";
+import * as UserController from "./controllers/UserController";
 
 
 //import { isAuthenticated } from "./middlewares/isAuthenticated";
@@ -13,3 +14,8 @@ export const router = Router();
 //---- ROTAS NÃO PROTEGIDAS ----//
 //---- ROTAS DE TESTE ----//
 router.get('/ping', pingController.ping);
+
+//---- ROTAS DE USUÁRIO ----//
+router.post('/user', UserController.CreateUserController);
+
+router.post('/auth', UserController.AuthUserController);
