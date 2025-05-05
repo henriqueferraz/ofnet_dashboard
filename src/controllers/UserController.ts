@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { AuthUserService, CreateUserService } from "../services/UserService";
+import { AuthUserService, CreateUserService, DetailUserService } from "../services/UserService";
 import { AuthUserSchema, CreateUserSchema } from "../schemas/UserSchema";
 
 // ---- FUNÇÃO PARA CRIAR USUÁRIO ---- //
@@ -52,3 +52,15 @@ export const AuthUserController: RequestHandler = async (req, res) => {
 
     res.json(user);
 };
+
+// ---- FUNÇÃO MOSTAR OS DETALHES DO USUÁRIO ---- //
+export const DetailUserController: RequestHandler = async (req, res) => {
+
+    const data = req.params.id;
+
+    const user = await DetailUserService({
+        id: data,
+    });
+
+    res.json(user);
+}

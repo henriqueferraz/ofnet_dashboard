@@ -3,6 +3,7 @@ import { Router } from "express";
 
 import * as pingController from "./controllers/ping";
 import * as UserController from "./controllers/UserController";
+import { Authenticated } from "./middlewares/Authenticated";
 
 
 //import { isAuthenticated } from "./middlewares/isAuthenticated";
@@ -19,3 +20,7 @@ router.get('/ping', pingController.ping);
 router.post('/user', UserController.CreateUserController);
 
 router.post('/auth', UserController.AuthUserController);
+
+//---- ROTAS PROTEGIDAS ----//
+//---- ROTAS PARA LISTAR USUÁRIO ----//
+router.get('/user', Authenticated, UserController.DetailUserController);

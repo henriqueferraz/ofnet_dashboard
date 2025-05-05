@@ -92,3 +92,28 @@ export const AuthUserService =
             token
         };
     };
+
+
+// ---- FUNÇÃO PARA MOSTRAR OS DETALES DO USUÁRIO ---- //
+export const DetailUserService =
+    async (data: { id: string }) => {
+
+        if (data === undefined) {
+            throw new Error("Informe o ID do usuário!");
+        }
+
+        const user = await prisma.user.findFirst({
+            where: {
+                id: data.id
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                createdAt: true,
+                updatedAt: true,
+            }
+        })
+
+        return (user);
+    };
